@@ -55,6 +55,8 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     width: '50%',
+                    minWidth: '300px',
+                    height: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -71,28 +73,45 @@ const theme = createTheme({
                     height: 8,
                     fontSize: 18,
                     color: bodyColor,
-                    margin: 4
+                    margin: 4,                
                 },
-
             }
         },
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    fontSize: 20,
+                    fontSize: 18,
                     color: secondaryColor,
+                    "&.Mui-focused": {
+                        color: bodyColor,
+                      },
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          border: `2px solid #AAA`,
+                        },
+                    }
+                },
+                notchedOutline: {
+                    border: `2px solid #AAA`,
                 }
             }
         },
-    }
+    },
+    
 });
 
 export const PageContainer = styled(Box, {
     name: 'PageContainer',
     slot: 'Wrapper'
 })({
-    width: 'auto',
-    height: 'auto',
+    width: '100vw',
+    height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: bgColor,
