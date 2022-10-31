@@ -3,6 +3,7 @@ import { Box, Tab } from '@mui/material';
 import { TabContainer } from 'styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Basic from 'components/Form/Basic';
+import Social from 'components/Form/Social';
 
 function NavTab () {
     const [ value, setValue ] = useState<string>('1');
@@ -27,7 +28,9 @@ function NavTab () {
                     <TabPanel value='1'>
                         <Basic />
                     </TabPanel>
-                    <TabPanel value='2'>Panel two</TabPanel>
+                    <TabPanel value='2'>
+                        <Social />
+                    </TabPanel>
                     <TabPanel value='3'>Panel three</TabPanel>
                 </form>
             </TabContext>
