@@ -4,9 +4,11 @@ import { TabContainer } from 'styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Basic from 'components/Form/Basic';
 import Social from 'components/Form/Social';
+import Certificates from 'components/Form/Certificates.tsx';
 
 function NavTab () {
     const [ value, setValue ] = useState<string>('1');
+
 
     const handleChange = (e: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -31,7 +33,9 @@ function NavTab () {
                     <TabPanel value='2'>
                         <Social />
                     </TabPanel>
-                    <TabPanel value='3'>Panel three</TabPanel>
+                    <TabPanel value='3'>
+                        <Certificates />
+                    </TabPanel>
                 </form>
             </TabContext>
         </Box>

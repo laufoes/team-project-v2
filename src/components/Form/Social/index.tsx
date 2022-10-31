@@ -6,18 +6,17 @@ function Social() {
     return (
         <Box>
             <TextField
-                required
-                id="outlined-"
-                label="LinkedIn"
-                defaultValue="https://www.linkedin.com/in/foo-bar-3a0560104/"
+                id="outlined"
+                focused label="LinkedIn"
+                placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
                 sx={{ my: 2 }}
                 fullWidth
             />
             <TextField
                 required
                 id="outlined-required"
-                label="Github"
-                defaultValue="https://github.com/foobar"
+                focused label="Github"
+                placeholder="https://github.com/foobar"
                 sx={{ my: 2 }}
                 fullWidth
             />

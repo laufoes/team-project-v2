@@ -9,16 +9,15 @@ function Basic() {
             <TextField
                 required
                 id="outlined-required"
-                label="Full Name"
-                defaultValue="Foo Bar"
+                focused label="Full Name"
+                placeholder="Foo Bar"
                 sx={{ my: 2 }}
                 fullWidth
             />
             <TextField
-                required
                 id="outlined"
-                label="Nickname"
-                defaultValue="Juanito"
+                focused label="Nickname"
+                placeholder="Juanito"
                 sx={{ my: 2 }}
                 fullWidth
             />
@@ -30,25 +29,24 @@ function Basic() {
                     <TextField
                         required
                         id="outlined-required"
-                        label="Email"
-                        defaultValue="foo@bar.com"
+                        focused label="Email"
+                        placeholder="foo@bar.com"
                         sx={{ my: 2, width: '100%' }}
                         fullWidth
                     />
                 </Grid>
                 <Grid item sm={12} md={5}>
                     <TextField
-                        required
                         id="outlined"
-                        label="Phone"
-                        defaultValue="(83) 00000-0000"
+                        focused label="Phone"
+                        placeholder="(83) 00000-0000"
                         sx={{ my: 2, width: '100%' }}
                     />
                 </Grid>
             </Grid>
             <Typography variant="h2">Birthday*</Typography>
             <Grid container spacing={2}>
-                <Grid item sm={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <InputLabel id="day-label"  sx={{ fontSize: '16px', textAlign: 'left' }}>Day</InputLabel>
                     <Select
                         labelId="day-label"
@@ -64,7 +62,7 @@ function Basic() {
                         <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                 </Grid>
-                <Grid item sm={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <InputLabel id="month-label"  sx={{ fontSize: '16px', textAlign: 'left' }}>Month</InputLabel>
                     <Select
                         labelId="month-label"
@@ -80,7 +78,7 @@ function Basic() {
                         <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                 </Grid>
-                <Grid item sm={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <InputLabel id="year-label"  sx={{ fontSize: '16px', textAlign: 'left' }}>Year</InputLabel>
                     <Select
                         labelId="year-label"
@@ -96,7 +94,7 @@ function Basic() {
                         <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                 </Grid>
-                <Grid item sm={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <InputLabel id="age-label" sx={{ fontSize: '16px', textAlign: 'left' }}>Age</InputLabel>
                     <Select
                         labelId="age-label"
