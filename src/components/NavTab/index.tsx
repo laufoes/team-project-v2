@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Box, Tab } from '@mui/material';
 import { TabContainer } from 'styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Basic from 'components/Form/Basic';
 import Social from 'components/Form/Social';
-import Certificates from 'components/Form/Certificates.tsx';
+import Certificates from 'components/Form/Certificates';
+import { PageContext, PageProps } from 'common/contexts/PageContext';
 
 function NavTab () {
-    const [ value, setValue ] = useState<string>('1');
-
-
+    const { page, setPage } = useContext<PageProps>(PageContext);
+    
     const handleChange = (e: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
+        setPage(newValue);
     }
 
     return(
         <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <TabContext value={value}>
+            <TabContext value={page}>
                 <TabContainer>
                     <TabList aria-label='Tabs example' onChange={handleChange}
                     sx={{ width: '100%', borderBottom: '1px' }}
                     >
-                        <Tab label='Basic' value='1' sx={{ width: '33.3%', borderBottom: 2 }} />
-                        <Tab label='Social' value='2' sx={{ width: '33.3%', borderBottom: 2 }} />
-                        <Tab label='Certificates' value='3' sx={{ width: '33.3%', borderBottom: 2 }} />
+                        <Tab label='Basic' value='Basic' sx={{ width: '33.3%', borderBottom: 2 }} />
+                        <Tab label='Social' value='Social' sx={{ width: '33.3%', borderBottom: 2 }} />
+                        <Tab label='Certificates' value='Certificates' sx={{ width: '33.3%', borderBottom: 2 }} />
                     </TabList>
                 </TabContainer>
                 <form>
-                    <TabPanel value='1'>
+                    <TabPanel value='Basic'>
                         <Basic />
                     </TabPanel>
-                    <TabPanel value='2'>
+                    <TabPanel value='Social'>
                         <Social />
                     </TabPanel>
-                    <TabPanel value='3'>
+                    <TabPanel value='Certificates'>
                         <Certificates />
                     </TabPanel>
                 </form>
