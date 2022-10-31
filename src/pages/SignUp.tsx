@@ -1,8 +1,8 @@
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { Button, Paper, Typography } from '@mui/material';
-import NavTab from 'components/NavTab';
 import { PageContainer } from 'styles/theme.styles';
+import NavTab from 'components/NavTab';
 
 function SignUp() {
   const navigate = useNavigate();
