@@ -5,7 +5,7 @@ import { styled } from "@mui/system"
 const primaryColor = '#074EE8';
 const bodyColor = '#767676';
 const bgColor = '#ECEEF2';
-const secondaryColor = '#AAAAAA';
+export const secondaryColor = '#AAAAAA';
 
 const theme = createTheme({
     palette: {
@@ -38,6 +38,12 @@ const theme = createTheme({
             lineHeight: 3,
             textAlign: 'left'
         },
+        h2: {
+            fontSize: 18,
+            lineHeight: 2,
+            color: bodyColor,
+            textAlign: 'left',
+        },
         button: {
             textTransform: 'none',
             color: primaryColor,
@@ -59,6 +65,25 @@ const theme = createTheme({
                 }
             }
         },
+        MuiInputBase: {
+            styleOverrides: {
+                input: {
+                    height: 8,
+                    fontSize: 18,
+                    color: bodyColor,
+                    margin: 4
+                },
+
+            }
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    fontSize: 20,
+                    color: secondaryColor,
+                }
+            }
+        },
     }
 });
 
@@ -77,8 +102,6 @@ export const TabContainer = styled(Box, {
     name: 'TabContainer',
     slot: 'Wrapper'
 })({
-    borderBottom: 2,
-    borderColor: secondaryColor,
     width: '85%',
     display: 'flex',
     justifyContent: 'center',
