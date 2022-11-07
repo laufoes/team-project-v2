@@ -17,5 +17,8 @@ export const basicValidationSchema = Yup.object().shape({
         .oneOf(generateMonths()),
     birthYear: Yup.number()
         .required()
-        .oneOf(generateYears())
+        .oneOf(generateYears()),
+    acceptTerms: Yup.boolean()
+        .required()
+        .oneOf([true], 'É necessário concordar com os termos para prosseguir.')
 })

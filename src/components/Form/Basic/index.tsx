@@ -7,7 +7,7 @@ import { generateDays, generateMonths, generateYears } from 'utils/consts';
 
 function Basic() {
     const [userAge, setUserAge] = useState(0);
-    const { values, isSubmitting } = useFormikContext<BaseFormProps>();
+    const { values, isSubmitting, errors, touched } = useFormikContext<BaseFormProps>();
     const { birthYear } = values;
 
     function calculateAge(year: number, month: number, day: number) {
@@ -40,8 +40,9 @@ function Basic() {
                     name="name"
                     sx={{ my: 2 }}
                     fullWidth
+                    error={Boolean(errors.name) && Boolean(touched.name)}
+                    helperText={Boolean(touched.name) && errors.name}
                 />
-                <ErrorMessage name="name" component="div" />
                 <Field
                     id="outlined"
                     as={TextField}
@@ -65,8 +66,9 @@ function Basic() {
                             placeholder="foo@bar.com"
                             sx={{ my: 2, width: '100%' }}
                             fullWidth
+                            error={Boolean(errors.email) && Boolean(touched.email)}
+                            helperText={Boolean(touched.email) && errors.email}
                         />
-                        <ErrorMessage name="email" component="div" />
                     </Grid>
                     <Grid item sm={12} md={5}>
                         <Field
@@ -94,6 +96,8 @@ function Basic() {
                             // onChange={handleChange}
                             fullWidth
                             size='small'
+                            error={Boolean(errors.birthDay) && Boolean(touched.birthDay)}
+                            helperText={Boolean(touched.birthDay) && errors.birthDay}
                         >
                             {generateDays().map(
                                 (day) =>
@@ -113,6 +117,8 @@ function Basic() {
                             // onChange={handleChange}
                             fullWidth
                             size='small'
+                            error={Boolean(errors.birthMonth) && Boolean(touched.birthMonth)}
+                            helperText={Boolean(touched.birthMonth) && errors.birthMonth}
                         >
                             {generateMonths().map(
                                 (month) =>
@@ -131,6 +137,8 @@ function Basic() {
                             label="Year"
                             fullWidth
                             size='small'
+                            error={Boolean(errors.birthYear) && Boolean(touched.birthYear)}
+                            helperText={Boolean(touched.birthYear) && errors.birthYear}
                         >
                             {generateYears().map(
                                 (year) =>
@@ -155,8 +163,20 @@ function Basic() {
                         </Field>
                     </Grid>
                 </Grid>
-                <FormControl sx={{ marginTop: 2 }}>
-                    <FormControlLabel control={<Field as={Checkbox} name="acceptTerms" />} label="I accept the terms and privacy" />
+                <FormControl 
+                    sx={{ marginTop: 2 }}
+                    error={Boolean(errors.acceptTerms)}
+                >
+                    <FormControlLabel control=
+                        { <Field
+                             as={Checkbox} 
+                             color="secondary"
+                             name="acceptTerms" /> 
+                        }
+                        label="I accept the terms and privacy"
+                    />
+                    {Boolean(errors.acceptTerms) ? <Typography variant="body2">{errors.acceptTerms}</Typography> : ''}
+
                 </FormControl>
             </Box>
             <Box
@@ -168,6 +188,7 @@ function Basic() {
                     aria-label="Next page"
                     type="submit"
                     disabled={isSubmitting}
+                    color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Next</Button>
             </Box>

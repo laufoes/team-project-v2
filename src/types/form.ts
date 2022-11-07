@@ -6,5 +6,5 @@ export interface BaseFormProps {
     birthDay: number,
     birthMonth: number,
     birthYear: number,
-    accepTerms: boolean,
+    acceptTerms: boolean,
 }

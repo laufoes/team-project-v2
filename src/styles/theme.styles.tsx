@@ -1,11 +1,13 @@
 import { createTheme } from "@mui/material";
 import { Box } from '@mui/material/';
 import { styled } from "@mui/system"
+import { MdPalette } from "react-icons/md";
 
-const primaryColor = '#074EE8';
+const primaryColor = '#AAAAAA';
 const bodyColor = '#767676';
 const bgColor = '#ECEEF2';
-export const secondaryColor = '#AAAAAA';
+const errorMain = '#c62828';
+export const secondaryColor = '#074EE8';
 
 const theme = createTheme({
     palette: {
@@ -29,8 +31,8 @@ const theme = createTheme({
             fontSize: 14,
         },
         body2: {
-            color: primaryColor,
-            fontSize: 16
+            color: errorMain,
+            fontSize: 12
         },
         h1: {
             fontSize: 24,
@@ -46,7 +48,7 @@ const theme = createTheme({
         },
         button: {
             textTransform: 'none',
-            color: primaryColor,
+            color: secondaryColor,
             fontSize: 18,
         },
     },
@@ -82,27 +84,27 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     fontSize: 18,
-                    color: secondaryColor,
+                    color: bodyColor,
                     "&.Mui-focused": {
                         color: bodyColor,
                       },
                 },
             },
         },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    "&.Mui-focused": {
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          border: `2px solid #AAA`,
-                        },
-                    }
-                },
-                notchedOutline: {
-                    border: `2px solid #AAA`,
-                }
-            }
-        },
+        // MuiOutlinedInput: {
+        //     styleOverrides: {
+        //         root: {
+        //             "&.Mui-focused": {
+        //                 "& .MuiOutlinedInput-notchedOutline": {
+        //                   border: `2px solid #AAA`,
+        //                 },
+        //             }
+        //         },
+        //         notchedOutline: {
+        //             border: `2px solid #AAA`,
+        //         }
+        //     }
+        // },
     },
     
 });

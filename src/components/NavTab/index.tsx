@@ -21,6 +21,8 @@ function NavTab() {
                 <TabContainer>
                     <TabList aria-label='Tabs example' onChange={handleChange}
                         sx={{ width: '100%', border: 'none' }}
+                        textColor="secondary"
+                        indicatorColor="secondary"
                     >
                         <Tab label='Basic' value='Basic' sx={{ width: '33.3%' }} />
                         <Tab label='Social' value='Social' sx={{ width: '33.3%' }} />
@@ -37,7 +39,7 @@ function NavTab() {
                             birthDay: undefined,
                             birthMonth: undefined,
                             birthYear: undefined,
-                            accepTerms: false,
+                            acceptTerms: false,
                         }}
                         validationSchema={basicValidationSchema}
 
@@ -49,7 +51,7 @@ function NavTab() {
                         }}
                     >
 
-                        {({ isSubmitting, values }) => (
+                        {({ isSubmitting, values, errors, touched }) => (
                             <Form>
                                 <Basic />
                             </ Form>
