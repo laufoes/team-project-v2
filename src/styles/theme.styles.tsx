@@ -56,6 +56,7 @@ const theme = createTheme({
                 root: {
                     width: '50%',
                     minWidth: '300px',
+                    maxWidth: '617px',
                     height: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
@@ -126,6 +127,7 @@ export const TabContainer = styled(Box, {
     justifyContent: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
+    borderBottom: `2px solid #AAA`,
 });
 
 export default theme

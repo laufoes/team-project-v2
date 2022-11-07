@@ -6,37 +6,62 @@ import Basic from 'components/Form/Basic';
 import Social from 'components/Form/Social';
 import Certificates from 'components/Form/Certificates';
 import { PageContext, PageProps } from 'common/contexts/PageContext';
+import { Form, Formik } from 'formik';
+import { basicValidationSchema } from 'utils/validationSchemas';
 
-function NavTab () {
+function NavTab() {
     const { page, setPage } = useContext<PageProps>(PageContext);
-    
     const handleChange = (e: React.SyntheticEvent, newValue: string) => {
         setPage(newValue);
     }
 
-    return(
+    return (
         <Box sx={{ width: '100%', textAlign: 'center' }}>
             <TabContext value={page}>
                 <TabContainer>
                     <TabList aria-label='Tabs example' onChange={handleChange}
-                    sx={{ width: '100%', borderBottom: '1px' }}
+                        sx={{ width: '100%', border: 'none' }}
                     >
-                        <Tab label='Basic' value='Basic' sx={{ width: '33.3%', borderBottom: 2 }} />
-                        <Tab label='Social' value='Social' sx={{ width: '33.3%', borderBottom: 2 }} />
-                        <Tab label='Certificates' value='Certificates' sx={{ width: '33.3%', borderBottom: 2 }} />
+                        <Tab label='Basic' value='Basic' sx={{ width: '33.3%' }} />
+                        <Tab label='Social' value='Social' sx={{ width: '33.3%' }} />
+                        <Tab label='Certificates' value='Certificates' sx={{ width: '33.3%' }} />
                     </TabList>
                 </TabContainer>
-                <form>
-                    <TabPanel value='Basic'>
-                        <Basic />
-                    </TabPanel>
-                    <TabPanel value='Social'>
-                        <Social />
-                    </TabPanel>
-                    <TabPanel value='Certificates'>
-                        <Certificates />
-                    </TabPanel>
-                </form>
+                <TabPanel value='Basic'>
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            nickname: '',
+                            email: '',
+                            phone: '',
+                            birthDay: undefined,
+                            birthMonth: undefined,
+                            birthYear: undefined,
+                            accepTerms: false,
+                        }}
+                        validationSchema={basicValidationSchema}
+
+                        onSubmit={(values, { setSubmitting }) => {
+                            setTimeout(() => {
+                                alert(JSON.stringify(values, null, 2));
+                                setSubmitting(false);
+                            }, 400);
+                        }}
+                    >
+
+                        {({ isSubmitting, values }) => (
+                            <Form>
+                                <Basic />
+                            </ Form>
+                        )}
+                    </Formik>
+                </TabPanel>
+                <TabPanel value='Social'>
+                    <Social />
+                </TabPanel>
+                <TabPanel value='Certificates'>
+                    <Certificates />
+                </TabPanel>
             </TabContext>
         </Box>
     )
