@@ -30,3 +30,24 @@ export const socialValidationSchema = Yup.object().shape({
         .required()
         .matches(urlRegex, 'Insira um endereço válido.')
 })
+
+export const certificatesValidationSchema = Yup.object().shape({
+    certificates: Yup.object({
+        first: Yup.string()
+            .matches(urlRegex, 'Insira uma url válida.'),
+        second: Yup.string()
+            .matches(urlRegex, 'Insira uma url válida.'),
+        third: Yup.string()
+            .matches(urlRegex, 'Insira uma url válida.'),
+        fourth: Yup.string()
+            .matches(urlRegex, 'Insira uma url válida.'),
+        fifth: Yup.string()
+            .matches(urlRegex, 'Insira uma url válida.'),
+    }),
+    teamName: Yup.string()
+        .required('Insira o nome da equipe.'),
+    institution: Yup.string()
+        .required('Insira o nome da instituição de ensino.'),
+    graduation: Yup.string()
+        .required('Insira o curso superior.'),
+})
