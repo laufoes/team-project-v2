@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import { Field, useFormikContext } from 'formik'
+import { Persist } from 'formik-persist'
 import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
@@ -88,6 +89,7 @@ function Certificates() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Finish</Button>
+                    <Persist name="certificates-form" />
             </Box>
         </>
     )

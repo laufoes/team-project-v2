@@ -1,9 +1,10 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Field, ErrorMessage, useFormikContext } from 'formik';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { BaseFormProps } from 'types/form';
 import { generateDays, generateMonths, generateYears } from 'utils/consts';
+import { Persist } from 'formik-persist';
 
 function Basic() {
     const [userAge, setUserAge] = useState(0);
@@ -174,7 +175,7 @@ function Basic() {
                         }
                         label="I accept the terms and privacy"
                     />
-                    {Boolean(errors.acceptTerms) ? <Typography variant="body2">{errors.acceptTerms}</Typography> : ''}
+                    {errors.acceptTerms ? <Typography variant="body2">{errors.acceptTerms}</Typography> : ''}
 
                 </FormControl>
             </Box>
@@ -190,6 +191,7 @@ function Basic() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Next</Button>
+                    <Persist name="basic-form" />
             </Box>
         </>
     )

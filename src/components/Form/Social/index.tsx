@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import { Field, useFormikContext } from 'formik';
+import { Persist } from 'formik-persist';
 import React from 'react'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { SocialFormProps } from 'types/form';
@@ -49,6 +50,7 @@ function Social() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Next</Button>
+                    <Persist name="social-form" />
             </Box>
         </>
     )
