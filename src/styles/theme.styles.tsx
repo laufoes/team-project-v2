@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material";
 import { Box } from '@mui/material/';
 import { styled } from "@mui/system"
-import { MdPalette } from "react-icons/md";
 
 const primaryColor = '#AAAAAA';
 const bodyColor = '#767676';

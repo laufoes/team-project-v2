@@ -8,7 +8,6 @@ import { generateDays, generateMonths, generateYears } from 'utils/consts';
 function Basic() {
     const [userAge, setUserAge] = useState(0);
     const { values, isSubmitting, errors, touched } = useFormikContext<BaseFormProps>();
-    const { birthYear } = values;
 
     function calculateAge(year: number, month: number, day: number) {
         const todaysDate = new Date();
@@ -24,7 +23,7 @@ function Basic() {
 
     useEffect(() => {
         calculateAge(values.birthYear, values.birthMonth, values.birthDay)
-    }, [birthYear])
+    }, [ values.birthYear, values.birthMonth, values.birthDay ])
 
     return (
         <>
