@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Box, Tab } from '@mui/material';
-import { TabContainer } from 'styles/theme.styles';
+import { TabContainer } from 'assets/styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Basic from 'components/Form/Basic';
 import Social from 'components/Form/Social';

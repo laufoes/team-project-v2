@@ -1,5 +1,5 @@
 import { Paper, Typography } from '@mui/material';
-import { PageContainer } from 'styles/theme.styles';
+import { PageContainer } from 'assets/styles/theme.styles';
 import NavTab from 'components/NavTab';
 import { PageContextProvider } from 'common/contexts/PageContext';
 

@@ -45,6 +45,18 @@ const theme = createTheme({
             color: bodyColor,
             textAlign: 'left',
         },
+        h3: {
+            fontSize: 18,
+            lineHeight: 2,
+            color: secondaryColor,
+            textAlign: 'left',
+            fontWeight: 'bold',
+        },
+        subtitle1: {
+            fontSize: 14,
+            color: secondaryColor,
+            fontWeight: 'bold'
+        },
         button: {
             textTransform: 'none',
             color: secondaryColor,
@@ -90,6 +102,13 @@ const theme = createTheme({
                 },
             },
         },
+        MuiListItem: {
+            styleOverrides: {
+                root: {
+                    padding: 2,
+                }
+            }
+        }
         // MuiOutlinedInput: {
         //     styleOverrides: {
         //         root: {
