@@ -63,7 +63,7 @@ const theme = createTheme({
                     flexDirection: 'column',
                     alignItems: 'center',
                     elevation: 3,
-                    marginTop: 100,
+                    marginTop: '5%',
                     borderRadius: 20,
                     px: 6,
                 }

@@ -8,7 +8,11 @@ function SignUp() {
   return (
     <PageContextProvider>
       <PageContainer>
-          <Paper>
+          <Paper sx={{ height: 'fit-content', minHeight: 700, width: {
+            xs: '90%',
+            sm: 550,
+            md: 617,
+          } }}>
             <Typography variant='h1' sx={{ alignSelf: 'flex-start', mx: 6, my: 1 }}>Team Sign Up</Typography>
             <NavTab />
           </Paper>
