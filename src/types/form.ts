@@ -8,3 +8,8 @@ export interface BaseFormProps {
     birthYear: number,
     acceptTerms: boolean,
 }
+
+export interface SocialFormProps {
+    linkedin: string,
+    github: string,
+}

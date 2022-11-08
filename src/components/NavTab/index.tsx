@@ -7,7 +7,7 @@ import Social from 'components/Form/Social';
 import Certificates from 'components/Form/Certificates';
 import { PageContext, PageProps } from 'common/contexts/PageContext';
 import { Form, Formik } from 'formik';
-import { basicValidationSchema } from 'utils/validationSchemas';
+import { basicValidationSchema, socialValidationSchema } from 'utils/validationSchemas';
 
 function NavTab() {
     const { page, setPage } = useContext<PageProps>(PageContext);
@@ -59,7 +59,27 @@ function NavTab() {
                     </Formik>
                 </TabPanel>
                 <TabPanel value='Social'>
-                    <Social />
+                    <Formik
+                        initialValues={{
+                            linkedin: '',
+                            github: ''
+                        }}
+                        validationSchema={socialValidationSchema}
+
+                        onSubmit={(values, { setSubmitting }) => {
+                            setTimeout(() => {
+                                alert(JSON.stringify(values, null, 2));
+                                setSubmitting(false);
+                            }, 400);
+                        }}
+                    >
+
+                        {({ isSubmitting, values, errors, touched }) => (
+                            <Form>
+                                <Social />
+                            </Form>
+                        )}
+                    </Formik>
                 </TabPanel>
                 <TabPanel value='Certificates'>
                     <Certificates />
