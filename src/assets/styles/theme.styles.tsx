@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material";
 import { Box } from '@mui/material/';
 import { styled } from "@mui/system"
 
-const primaryColor = '#AAAAAA';
+export const primaryColor = '#AAAAAA';
 const bodyColor = '#767676';
 const bgColor = '#ECEEF2';
 const errorMain = '#c62828';

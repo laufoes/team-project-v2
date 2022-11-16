@@ -4,7 +4,9 @@ import { Persist } from 'formik-persist'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { TiDeleteOutline } from 'react-icons/ti'
+import { HiOutlineHeart } from 'react-icons/hi'
 import { CertificatesFormProps } from 'types/form'
+import { primaryColor, secondaryColor } from 'assets/styles/theme.styles'
 
 
 function Certificates() {
@@ -31,9 +33,12 @@ function Certificates() {
                                 error={errors.certificates && touched.certificates}
                                 InputProps={{
                                     endAdornment: (
-                                        <InputAdornment position="end">
-                                            <Button onClick={() => certificates.length > 1 ? fieldArrayProps.remove(index) : ''}>
-                                                <TiDeleteOutline size={26} />
+                                        <InputAdornment position="end" sx={{ display: 'flex', maxWidth: '60px' }}>
+                                            <Button sx={{ p: 0, color: primaryColor, maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', "&:hover": { color: secondaryColor }}} onClick={() => certificates.length > 1 ? fieldArrayProps.move(index, 0) : ''}>
+                                                <HiOutlineHeart size={25} />
+                                            </Button>
+                                            <Button sx={{ p: 0, maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px' }} onClick={() => certificates.length > 1 ? fieldArrayProps.remove(index) : ''}>
+                                                <TiDeleteOutline size={25} />
                                             </Button>
                                         </InputAdornment>
                                     ),
