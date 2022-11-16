@@ -108,7 +108,16 @@ const theme = createTheme({
                     padding: 2,
                 }
             }
-        }
+        },
+        // MuiInputAdornment: {
+        //     styleOverrides: {
+        //         root: {
+        //             "& 	.MuiInputAdornment-disablePointerEvents": {
+        //                 disablePointerEvents: false,
+        //             }
+        //         }
+        //     }
+        // }
         // MuiOutlinedInput: {
         //     styleOverrides: {
         //         root: {

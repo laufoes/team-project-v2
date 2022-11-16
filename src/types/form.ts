@@ -15,14 +15,12 @@ export interface SocialFormProps {
 }
 
 export interface CertificatesFormProps {
-    certificates: {
-        first: string,
-        second: string,
-        third: string,
-        fourth: string,
-        fifth: string
-    },
+    certificates: ICertificate[],
     teamName: string,
     institution: string,
     graduation: string,
+}
+
+interface ICertificate {
+    certificate?: string
 }

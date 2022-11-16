@@ -1,42 +1,76 @@
-import { Button, TextField } from '@mui/material'
-import { Box } from '@mui/system'
-import { Field, useFormikContext } from 'formik'
+import { Button, TextField, Box, InputAdornment, Typography } from '@mui/material'
+import { Field, FieldArray, useFormikContext } from 'formik'
 import { Persist } from 'formik-persist'
-import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
+import { TiDeleteOutline } from 'react-icons/ti'
 import { CertificatesFormProps } from 'types/form'
 
-function Certificates() {
-    const { isSubmitting, values, errors, touched } = useFormikContext<CertificatesFormProps>();
 
+function Certificates() {
+    const { isSubmitting, values, errors, touched } = useFormikContext<CertificatesFormProps>();    
+    const { certificates } = values;
+ 
     return (
         <>
             <Box
                 sx={{ mx: 4, textAlign: 'left' }}
             >
-                <Field
-                    id="outlined"
-                    as={TextField}
-                    name="certificates.first"
-                    focused label="Certificates"
-                    placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
-                    sx={{ my: 2 }}
-                    fullWidth
-                    value={values.certificates.first}
-                    error={Boolean(errors.certificates?.first) && Boolean(touched.certificates?.first)}
-                    helperText={Boolean(touched.certificates?.first) && errors.certificates?.first}
+                <FieldArray name="certificates" render={fieldArrayProps => (
+                    <div>
+                        {values.certificates?.map((certificate, index) => (
+                            <Field
+                                key={index}
+                                id="outlined"
+                                as={TextField}
+                                name={`certificates[${index}].certificate`}
+                                focused label="Certificates"
+                                placeholder="https://www.linkedin.com/in/foo-bar-3a0560104/"
+                                sx={{ my: 2 }}
+                                fullWidth
+                                error={errors.certificates && touched.certificates}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <Button onClick={() => certificates.length > 1 ? fieldArrayProps.remove(index) : ''}>
+                                                <TiDeleteOutline size={26} />
+                                            </Button>
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+
+                        ))
+                        }
+                        { errors.certificates ? <Typography variant="body2">Insira um link válido</Typography> : ''}
+
+                        <Box sx={{ textAlign: 'right', marginBottom: 2 }}>
+                            {values.certificates.length < 5 ?
+                                <Button
+                                    sx={{ my: 2 }}
+                                    variant="contained"
+                                    aria-label="Add more certificates"
+                                    startIcon={<AiOutlinePlus />}
+                                    color="secondary"
+                                    endIcon={<MdKeyboardArrowRight />}
+                                    onClick={() => fieldArrayProps.push({ certificate: '' })}
+                                >More
+                                </Button>
+                                : <Button
+                                    disabled
+                                    sx={{ my: 2 }}
+                                    variant="contained"
+                                    aria-label="Add more certificates"
+                                    startIcon={<AiOutlinePlus />}
+                                    color="secondary"
+                                    endIcon={<MdKeyboardArrowRight />}
+                                    onClick={() => fieldArrayProps.push({ certificate: '' })}
+                                >More
+                                </Button>}
+                        </Box>
+                    </div>
+                )}
                 />
-                <Box sx={{ textAlign: 'right', marginBottom: 2 }}>
-                    <Button
-                        sx={{ my: 2 }}
-                        variant="contained"
-                        aria-label="Add more certificates"
-                        startIcon={<AiOutlinePlus />}
-                        color="secondary"
-                        endIcon={<MdKeyboardArrowRight />
-                        }>More</Button>
-                </Box>
                 <Field
                     required
                     id="outlined-required"
@@ -89,7 +123,8 @@ function Certificates() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Finish</Button>
-                    <Persist name="certificates-form" />
+                <Persist name="certificates-form"
+                />
             </Box>
         </>
     )

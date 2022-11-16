@@ -84,13 +84,9 @@ function NavTab() {
                 <TabPanel value='Certificates'>
                 <Formik
                         initialValues={{
-                            certificates: {
-                                first: '',
-                                second: '',
-                                third: '',
-                                fourth: '',
-                                fifth: ''
-                            },
+                            certificates: [
+                                { certificate: '' },
+                            ],
                             teamName: '',
                             institution: '',
                             graduation: '',
