@@ -33,7 +33,8 @@ function SuccessPage() {
                     md: 617,
                 },
                 px: 6,
-                py: 4 }}
+                py: 4
+            }}
             >
                 <Typography variant='h1' sx={{ my: 1, alignSelf: 'flex-start' }}>Team Sign Up</Typography>
                 <Typography variant='h3' sx={{ alignSelf: 'flex-start' }}>Current members</Typography>
@@ -81,14 +82,11 @@ function SuccessPage() {
                                 <ListItem>
                                     <ListItemText primary="Github:" secondary={values.github} />
                                 </ListItem>
-                                {certificates ? Object.keys(certificates).map((key, value) => {
-                                    if (value !== 0) {
-                                        return ''
-                                    } else {
-                                        return <ListItem>
-                                            <ListItemText primary="Certificate:" secondary={certificates[key]} />
-                                        </ListItem>
-                                    }
+                                {certificates ? certificates.forEach((key: number) => {
+                                    <ListItem>
+                                        <ListItemText primary="Certificate:" secondary={certificates[key]} />
+                                    </ListItem>
+
                                 }
                                 ) : ''}
                                 <ListItem>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Box, Tab } from '@mui/material';
 import { TabContainer } from 'assets/styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
@@ -8,25 +8,42 @@ import Certificates from 'components/Form/Certificates';
 import { PageContext, PageProps } from 'common/contexts/PageContext';
 import { Form, Formik } from 'formik';
 import { basicValidationSchema, certificatesValidationSchema, socialValidationSchema } from 'utils/validationSchemas';
+import { useNavigate } from 'react-router-dom';
 
 function NavTab() {
     const { page, setPage } = useContext<PageProps>(PageContext);
-    const handleChange = (e: React.SyntheticEvent, newValue: string) => {
-        setPage(newValue);
+    const pages = ['Basic', 'Social', 'Certificates'];
+    const [steps, setSteps] = useState([ 'Basic' ]);
+    // const steps = [ 'Basic', 'Social', 'Certificates' ]
+
+    const handleChange = (e: React.SyntheticEvent) => {
+        const nextStep = e.currentTarget.textContent;
+        
+       if((Object.values(steps).find((item) => item === nextStep)) === nextStep) {
+        setPage(nextStep.toString())
+       }
     }
+
+    useEffect(() => {
+        setSteps([ ...steps, page ])
+    }, [steps, page])
+
+    const navigate = useNavigate();
+
 
     return (
         <Box sx={{ width: '100%', textAlign: 'center' }}>
             <TabContext value={page}>
                 <TabContainer>
-                    <TabList aria-label='Tabs example' onChange={handleChange}
+                    <TabList aria-label='Tabs example' onChange={((e) => handleChange(e))}
                         sx={{ width: '100%', border: 'none' }}
                         textColor="secondary"
                         indicatorColor="secondary"
                     >
-                        <Tab label='Basic' value='Basic' sx={{ width: '33.3%' }} />
-                        <Tab label='Social' value='Social' sx={{ width: '33.3%' }} />
-                        <Tab label='Certificates' value='Certificates' sx={{ width: '33.3%' }} />
+                        {pages.map((values, index) => {
+                            return <Tab key={index} label={values} value={values} sx={{ width: '33.3%' }} />
+                            }
+                        )}
                     </TabList>
                 </TabContainer>
                 <TabPanel value='Basic'>
@@ -36,9 +53,9 @@ function NavTab() {
                             nickname: '',
                             email: '',
                             phone: '',
-                            birthDay: undefined,
-                            birthMonth: undefined,
-                            birthYear: undefined,
+                            birthDay: '',
+                            birthMonth: '',
+                            birthYear: '',
                             acceptTerms: false,
                         }}
                         validationSchema={basicValidationSchema}
@@ -47,6 +64,7 @@ function NavTab() {
                             setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
+                                setPage('Social')
                             }, 400);
                         }}
                     >
@@ -70,6 +88,7 @@ function NavTab() {
                             setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
+                                setPage('Certificates');
                             }, 400);
                         }}
                     >
@@ -82,7 +101,7 @@ function NavTab() {
                     </Formik>
                 </TabPanel>
                 <TabPanel value='Certificates'>
-                <Formik
+                    <Formik
                         initialValues={{
                             certificates: [
                                 { certificate: '' },
@@ -97,6 +116,7 @@ function NavTab() {
                             setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
+                                navigate('/success');
                             }, 400);
                         }}
                     >

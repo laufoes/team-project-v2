@@ -93,7 +93,6 @@ function Basic() {
                             name="birthDay"
                             value={values.birthDay}
                             label="Day"
-                            // onChange={handleChange}
                             fullWidth
                             size='small'
                             error={Boolean(errors.birthDay) && Boolean(touched.birthDay)}
@@ -112,7 +111,7 @@ function Basic() {
                             labelId="month-label"
                             id="birthday-month"
                             name="birthMonth"
-                            value={values.birthMonth}
+                            // value={values.birthMonth}
                             label="Month"
                             // onChange={handleChange}
                             fullWidth
@@ -133,7 +132,7 @@ function Basic() {
                             labelId="year-label"
                             name="birthYear"
                             id="birthday-year"
-                            value={values.birthYear}
+                            // value={values.birthYear}
                             label="Year"
                             fullWidth
                             size='small'
