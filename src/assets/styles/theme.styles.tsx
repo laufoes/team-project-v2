@@ -109,31 +109,7 @@ const theme = createTheme({
                 }
             }
         },
-        // MuiInputAdornment: {
-        //     styleOverrides: {
-        //         root: {
-        //             "& 	.MuiInputAdornment-disablePointerEvents": {
-        //                 disablePointerEvents: false,
-        //             }
-        //         }
-        //     }
-        // }
-        // MuiOutlinedInput: {
-        //     styleOverrides: {
-        //         root: {
-        //             "&.Mui-focused": {
-        //                 "& .MuiOutlinedInput-notchedOutline": {
-        //                   border: `2px solid #AAA`,
-        //                 },
-        //             }
-        //         },
-        //         notchedOutline: {
-        //             border: `2px solid #AAA`,
-        //         }
-        //     }
-        // },
     },
-    
 });
 
 export const PageContainer = styled(Box, {

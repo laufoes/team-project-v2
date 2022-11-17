@@ -18,6 +18,12 @@ function SuccessPage() {
         ...socialFormInfo,
         ...certificatesFormInfo
     }
+
+    function registerNewMember() {
+        window.localStorage.clear()
+        navigate('/')
+    }
+
     const { values } = formInfo;
     const { certificates } = values
     console.log(values)
@@ -37,11 +43,11 @@ function SuccessPage() {
             }}
             >
                 <Typography variant='h1' sx={{ my: 1, alignSelf: 'flex-start' }}>Team Sign Up</Typography>
-                <Typography variant='h3' sx={{ alignSelf: 'flex-start' }}>Current members</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row-reverse', alignItems: 'flex-end', marginBottom: 8 }}>
+                <Typography variant='h3' sx={{ alignSelf: 'flex-start' }}>You have been successfuly registered!</Typography>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column-reverse', md: 'row-reverse' }, alignItems: { sm: 'center', md: 'flex-end', justifyContent: 'center' }, marginBottom: 4, px: 2 }}>
                     <img
                         src={UserPic} alt="User information"
-                        width={250}
+                        width='40%'
                         height='auto'
                     />
                     <Card sx={{
@@ -50,8 +56,8 @@ function SuccessPage() {
                         alignItems: 'flex-start',
                         alignSelf: 'flex-start',
                         p: 2,
-                        marginTop: 2,
-                        mx: 2
+                        mx: 2,
+                        my: 2
                     }}>
                         <List>
                             <>
@@ -108,10 +114,9 @@ function SuccessPage() {
                     aria-label="Add more users"
                     color="secondary"
                     endIcon={<AiOutlinePlus />}
-                    onClick={() => navigate('/')}
-                //limpar campos dos formularios
+                    onClick={registerNewMember}
                 >
-                    Register new member
+                    Register new team member
                 </Button>
             </Paper>
         </PageContainer>

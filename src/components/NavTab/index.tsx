@@ -14,12 +14,11 @@ function NavTab() {
     const { page, setPage } = useContext<PageProps>(PageContext);
     const pages = ['Basic', 'Social', 'Certificates'];
     const [steps, setSteps] = useState([ 'Basic' ]);
-    // const steps = [ 'Basic', 'Social', 'Certificates' ]
 
     const handleChange = (e: React.SyntheticEvent) => {
         const nextStep = e.currentTarget.textContent;
         
-       if((Object.values(steps).find((item) => item === nextStep)) === nextStep) {
+       if(steps.find((item) => item === nextStep) === nextStep) {
         setPage(nextStep.toString())
        }
     }
@@ -56,6 +55,7 @@ function NavTab() {
                             birthDay: '',
                             birthMonth: '',
                             birthYear: '',
+                            userAge: '',
                             acceptTerms: false,
                         }}
                         validationSchema={basicValidationSchema}
@@ -112,12 +112,13 @@ function NavTab() {
                         }}
                         validationSchema={certificatesValidationSchema}
 
-                        onSubmit={(values, { setSubmitting }) => {
+                        onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
                                 alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 navigate('/success');
                             }, 400);
+                            resetForm();
                         }}
                     >
 

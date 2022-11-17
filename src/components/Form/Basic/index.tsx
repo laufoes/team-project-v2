@@ -23,7 +23,9 @@ function Basic() {
     }
 
     useEffect(() => {
-        calculateAge(values.birthYear, values.birthMonth, values.birthDay)
+        if ( values.birthDay && values.birthMonth && values.birthYear !== 0){
+            calculateAge(values.birthYear, values.birthMonth, values.birthDay)
+        }
     }, [ values.birthYear, values.birthMonth, values.birthDay ])
 
     return (
@@ -91,10 +93,10 @@ function Basic() {
                             labelId="day-label"
                             id="birthday-day"
                             name="birthDay"
-                            value={values.birthDay}
                             label="Day"
                             fullWidth
                             size='small'
+                            value={values.birthDay}
                             error={Boolean(errors.birthDay) && Boolean(touched.birthDay)}
                             helperText={Boolean(touched.birthDay) && errors.birthDay}
                         >
@@ -111,11 +113,10 @@ function Basic() {
                             labelId="month-label"
                             id="birthday-month"
                             name="birthMonth"
-                            // value={values.birthMonth}
                             label="Month"
-                            // onChange={handleChange}
                             fullWidth
                             size='small'
+                            value={values.birthMonth}
                             error={Boolean(errors.birthMonth) && Boolean(touched.birthMonth)}
                             helperText={Boolean(touched.birthMonth) && errors.birthMonth}
                         >
@@ -132,10 +133,10 @@ function Basic() {
                             labelId="year-label"
                             name="birthYear"
                             id="birthday-year"
-                            // value={values.birthYear}
                             label="Year"
                             fullWidth
                             size='small'
+                            value={values.birthYear}
                             error={Boolean(errors.birthYear) && Boolean(touched.birthYear)}
                             helperText={Boolean(touched.birthYear) && errors.birthYear}
                         >
@@ -174,7 +175,7 @@ function Basic() {
                         }
                         label="I accept the terms and privacy"
                     />
-                    {errors.acceptTerms ? <Typography variant="body2">{errors.acceptTerms}</Typography> : ''}
+                    {errors.acceptTerms && touched.acceptTerms ? <Typography variant="body2">{errors.acceptTerms}</Typography> : ''}
 
                 </FormControl>
             </Box>
