@@ -62,7 +62,6 @@ function NavTab() {
 
                         onSubmit={(values, { setSubmitting }) => {
                             setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 setPage('Social')
                             }, 400);
@@ -86,7 +85,6 @@ function NavTab() {
 
                         onSubmit={(values, { setSubmitting }) => {
                             setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 setPage('Certificates');
                             }, 400);
@@ -114,7 +112,6 @@ function NavTab() {
 
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 navigate('/success');
                             }, 400);
