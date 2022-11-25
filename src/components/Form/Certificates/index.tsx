@@ -128,8 +128,7 @@ function Certificates() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Finish</Button>
-                <Persist name="certificates-form"
-                />
+                <Persist name="certificates" />
             </Box>
         </>
     )

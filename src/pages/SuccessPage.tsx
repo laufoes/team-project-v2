@@ -1,5 +1,4 @@
 import { Button, Card, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { PageContainer } from 'assets/styles/theme.styles';
 import UserPic from '../assets/images/personal-info.svg';
@@ -8,31 +7,44 @@ import { Box } from '@mui/system';
 
 function SuccessPage() {
     const navigate = useNavigate();
-
+    
     const basicFormInfo = JSON.parse(localStorage.getItem('basic-form') || '{}');
     const socialFormInfo = JSON.parse(localStorage.getItem('social-form') || '{}');
-    const certificatesFormInfo = JSON.parse(localStorage.getItem('certificates-form') || '{}');
+    const certificatesFormInfo = JSON.parse(localStorage.getItem('certificates') || '{}');
 
     const formInfo = {
-        ...basicFormInfo,
-        ...socialFormInfo,
-        ...certificatesFormInfo
+        ...basicFormInfo.values, 
+        ...socialFormInfo.values, 
+        ...certificatesFormInfo.values
     }
 
+    const { 
+        birthDay,
+        birthMonth,
+        birthYear, 
+        email, 
+        github, 
+        graduation, 
+        institution, 
+        linkedin, 
+        name, 
+        nickname, 
+        phone, 
+        teamName 
+    } = formInfo
+ 
     function registerNewMember() {
         window.localStorage.clear()
         navigate('/')
     }
 
-    const { values } = formInfo;
-    const { certificates } = values
-    console.log(values)
-
-    return (
-        <PageContainer>
+    return(
+    <PageContainer>
             <Paper sx={{
                 height: 'fit-content',
                 minHeight: 700,
+                marginTop: '5%',
+                marginBottom: '5%',
                 width: {
                     xs: '90%',
                     sm: 550,
@@ -62,47 +74,47 @@ function SuccessPage() {
                         <List>
                             <>
                                 <ListItem>
-                                    <ListItemText primary="Full Name:" secondary={values.name} />
+                                    <ListItemText primary="Full Name:" secondary={name} />
                                 </ListItem>
-                                {values.nickname ?
+                                {nickname ?
                                     <ListItem>
-                                        <ListItemText primary="Nickname:" secondary={values.nickname} />
+                                        <ListItemText primary="Nickname:" secondary={nickname} />
                                     </ListItem> : ''
                                 }
                                 <ListItem>
-                                    <ListItemText primary="Email:" secondary={values.email} />
+                                    <ListItemText primary="Email:" secondary={email} />
                                 </ListItem>
-                                {values.phone ?
+                                {phone ?
                                     <ListItem>
-                                        <ListItemText primary="Phone:" secondary={values.phone} />
+                                        <ListItemText primary="Phone:" secondary={phone} />
                                     </ListItem> : ''
                                 }
                                 <ListItem>
-                                    <ListItemText primary="Birthdate:" secondary={`${values.birthDay} / ${values.birthMonth} / ${values.birthYear}`} />
+                                    <ListItemText primary="Birthdate:" secondary={`${birthDay} / ${birthMonth} / ${birthYear}`} />
                                 </ListItem>
-                                {values.lindekin ?
+                                {linkedin ?
                                     <ListItem>
-                                        <ListItemText primary="LindekIn:" secondary={values.linkedin} />
+                                        <ListItemText primary="LindekIn:" secondary={linkedin} />
                                     </ListItem> : ''
                                 }
                                 <ListItem>
-                                    <ListItemText primary="Github:" secondary={values.github} />
+                                    <ListItemText primary="Github:" secondary={github} />
                                 </ListItem>
-                                {certificates ? certificates.forEach((key: number) => {
-                                    <ListItem>
-                                        <ListItemText primary="Certificate:" secondary={certificates[key]} />
-                                    </ListItem>
 
-                                }
-                                ) : ''}
+                           
+                                { formInfo.certificates.length !== 0 ? formInfo.certificates.map((item: any, index: number) => 
+                                <ListItem key={index}>
+                                    <ListItemText primary={`Certificate no. ${index + 1}`} secondary={item.certificate} />
+                                </ListItem>) : ''}
+
                                 <ListItem>
-                                    <ListItemText primary="Team Name:" secondary={values.teamName} />
+                                    <ListItemText primary="Team Name:" secondary={teamName} />
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemText primary="Institution:" secondary={values.institution} />
+                                    <ListItemText primary="Institution:" secondary={institution} />
                                 </ListItem>
                                 <ListItem>
-                                    <ListItemText primary="Graduation:" secondary={values.graduation} />
+                                    <ListItemText primary="Graduation:" secondary={graduation} />
                                 </ListItem>
                             </>
                         </List>

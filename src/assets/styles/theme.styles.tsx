@@ -67,7 +67,7 @@ const theme = createTheme({
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    width: '50%',
+                    width: '5%',
                     minWidth: '300px',
                     maxWidth: '617px',
                     height: 'auto',
@@ -75,10 +75,10 @@ const theme = createTheme({
                     flexDirection: 'column',
                     alignItems: 'center',
                     elevation: 3,
-                    marginTop: '5%',
                     borderRadius: 20,
                     px: 6,
-                }
+                    overoflow: 'auto',
+                },
             }
         },
         MuiInputBase: {
@@ -102,7 +102,7 @@ const theme = createTheme({
                 },
             },
         },
-        MuiListItem: {
+        MuiList: {
             styleOverrides: {
                 root: {
                     padding: 2,
@@ -117,7 +117,7 @@ export const PageContainer = styled(Box, {
     slot: 'Wrapper'
 })({
     width: '100vw',
-    height: '100vh',
+    height: 'auto',
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: bgColor,
@@ -132,6 +132,7 @@ export const TabContainer = styled(Box, {
     justifyContent: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginTop: '5%',
     borderBottom: `2px solid #AAA`,
 });
 

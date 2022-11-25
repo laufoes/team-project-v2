@@ -1,5 +1,5 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { Field, ErrorMessage, useFormikContext } from 'formik';
+import { Field, useFormikContext } from 'formik';
 import React, { useState, useEffect } from 'react';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { BaseFormProps } from 'types/form';
@@ -7,6 +7,7 @@ import { generateDays, generateMonths, generateYears } from 'utils/consts';
 import { Persist } from 'formik-persist';
 
 function Basic() {
+    const InputMask = require("react-input-mask")
     const [userAge, setUserAge] = useState(0);
     const { values, isSubmitting, errors, touched } = useFormikContext<BaseFormProps>();
 
@@ -23,10 +24,10 @@ function Basic() {
     }
 
     useEffect(() => {
-        if ( values.birthDay && values.birthMonth && values.birthYear !== 0){
+        if (values.birthDay && values.birthMonth && values.birthYear !== 0) {
             calculateAge(values.birthYear, values.birthMonth, values.birthDay)
         }
-    }, [ values.birthYear, values.birthMonth, values.birthDay ])
+    }, [values.birthYear, values.birthMonth, values.birthDay])
 
     return (
         <>
@@ -73,15 +74,28 @@ function Basic() {
                         />
                     </Grid>
                     <Grid item sm={12} md={5}>
-                        <Field
+                        <InputMask 
+                            mask="(99) 99999-9999"
+                            error={errors.phone && touched.phone}
+                            helperText={(errors.phone && touched.phone) && errors.phone}>
+                            {(inputProps: any) => 
+                                <TextField {...inputProps}
+                                id="phone"
+                                variant="outlined"
+                                focused label="Phone"
+                                name="phone"
+                                placeholder={'(83) 00000-0000'}
+                                sx={{ my: 2, width: '100%' }}
+                            />}
+                        </InputMask>
+                        {/* <Field
                             as={TextField}
                             id="outlined"
                             name="phone"
                             focused label="Phone"
                             placeholder="(83) 00000-0000"
                             sx={{ my: 2, width: '100%' }}
-                        />
-                        <ErrorMessage name="phone" component="div" />
+                        /> */}
                     </Grid>
                 </Grid>
                 <Typography variant="h2">Birthday*</Typography>
@@ -102,7 +116,7 @@ function Basic() {
                         >
                             {generateDays().map(
                                 (day) =>
-                                    <MenuItem value={day} key={day}>{day}</MenuItem>
+                                    <MenuItem sx={{ width: '5%', marginTop: 0, maxHeight: '33%' }} value={day} key={day}>{day}</MenuItem>
                             )}
                         </Field>
                     </Grid>
@@ -122,7 +136,7 @@ function Basic() {
                         >
                             {generateMonths().map(
                                 (month) =>
-                                    <MenuItem value={month} key={month}>{month}</MenuItem>
+                                    <MenuItem sx={{ width: '3%', marginTop: 0 }} value={month} key={month}>{month}</MenuItem>
                             )}
                         </Field>
                     </Grid>
@@ -142,7 +156,7 @@ function Basic() {
                         >
                             {generateYears().map(
                                 (year) =>
-                                    <MenuItem value={year} key={year}>{year}</MenuItem>
+                                    <MenuItem sx={{ width: '5%', marginTop: 0 }} value={year} key={year}>{year}</MenuItem>
                             )}
                         </Field>
                     </Grid>
@@ -163,15 +177,15 @@ function Basic() {
                         </Field>
                     </Grid>
                 </Grid>
-                <FormControl 
+                <FormControl
                     sx={{ marginTop: 2 }}
                     error={Boolean(errors.acceptTerms)}
                 >
                     <FormControlLabel control=
-                        { <Field
-                             as={Checkbox} 
-                             color="secondary"
-                             name="acceptTerms" /> 
+                        {<Field
+                            as={Checkbox}
+                            color="secondary"
+                            name="acceptTerms" />
                         }
                         label="I accept the terms and privacy"
                     />
@@ -191,7 +205,7 @@ function Basic() {
                     color="secondary"
                     endIcon={<MdKeyboardArrowRight />
                     }>Next</Button>
-                    <Persist name="basic-form" />
+                <Persist name="basic-form" />
             </Box>
         </>
     )

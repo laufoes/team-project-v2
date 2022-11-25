@@ -8,7 +8,7 @@ function SignUp() {
   return (
     <PageContextProvider>
       <PageContainer>
-          <Paper sx={{ height: 'fit-content', minHeight: 700, width: {
+          <Paper sx={{ height: 'fit-content', marginTop: '5%', minHeight: 700, width: {
             xs: '90%',
             sm: 550,
             md: 617,

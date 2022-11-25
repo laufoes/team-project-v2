@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Box, Tab } from '@mui/material';
+import { Box, CircularProgress, Tab } from '@mui/material';
 import { TabContainer } from 'assets/styles/theme.styles';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import Basic from 'components/Form/Basic';
@@ -13,7 +13,8 @@ import { useNavigate } from 'react-router-dom';
 function NavTab() {
     const { page, setPage } = useContext<PageProps>(PageContext);
     const pages = ['Basic', 'Social', 'Certificates'];
-    const [steps, setSteps] = useState([ 'Basic' ]);
+    const [ steps, setSteps ] = useState([ 'Basic' ]);
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const handleChange = (e: React.SyntheticEvent) => {
         const nextStep = e.currentTarget.textContent;
@@ -30,7 +31,7 @@ function NavTab() {
     const navigate = useNavigate();
 
 
-    return (
+    return isLoading ? <Box sx={{ width: '100%', textAlign: 'center' }}><CircularProgress /></Box> :
         <Box sx={{ width: '100%', textAlign: 'center' }}>
             <TabContext value={page}>
                 <TabContainer>
@@ -111,11 +112,11 @@ function NavTab() {
                         validationSchema={certificatesValidationSchema}
 
                         onSubmit={(values, { setSubmitting, resetForm }) => {
+                            setIsLoading(true)
                             setTimeout(() => {
                                 setSubmitting(false);
                                 navigate('/success');
                             }, 400);
-                            resetForm();
                         }}
                     >
 
@@ -128,7 +129,6 @@ function NavTab() {
                 </TabPanel>
             </TabContext>
         </Box>
-    )
 }
 
 export default NavTab
